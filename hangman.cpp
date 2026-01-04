@@ -1,10 +1,16 @@
 #include <iostream>
+#include<string>
+#include<conio.h>
 using namespace std;
+
 int main() {
     cout<<"===HANGMAN==="<<endl;
+    cout<<"Press any key to start"<<endl;
+    getch();
+    cout<<"Game start"<<endl;
     string word = "example";
     string guessed(word.length(), '_');
-    int attempts = 6;
+    int attempts = 7;
     char guess;
     cout<<"Guess the word: " << guessed << endl;
     while (attempts > 0 && guessed != word) {
