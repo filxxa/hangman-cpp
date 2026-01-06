@@ -1,14 +1,18 @@
 #include <iostream>
 #include<string>
 #include<conio.h>
+#include<ctime>
+#include<cstdlib>
 using namespace std;
-
 int main() {
     cout<<"===HANGMAN==="<<endl;
     cout<<"Press any key to start"<<endl;
     getch();
     cout<<"Game start"<<endl;
-    string word = "example";
+    srand(time(0));
+    string words[] = {"technology", "student", "education", "university", "programming"};
+    int wordCount = 5;
+    string word = words[rand() % wordCount];
     string guessed(word.length(), '_');
     int attempts = 7;
     char guess;
