@@ -9,10 +9,30 @@ int main() {
     cout<<"Press any key to start"<<endl;
     getch();
     cout<<"Game start"<<endl;
+    string education[] = {"technology", "student", "engineering", "university", "programming"};
+    string animals[] = {"rhinoceros", "vulture", "whale", "peacock", "ostrich"};
+    string flowers[] = {"hibiscus", "jasmine", "daffodil", "dandelion", "orchid"};
+    int educationCount = 5;
+    int animalsCount = 5;
+    int flowersCount = 5;
+    int theme;
+    cout<<"Choose a theme: "<<endl;
+    cout<<"1: Education"<<endl;
+    cout<<"2: Animals"<<endl;
+    cout<<"3: Flowers"<<endl;
+    cin>>theme;
     srand(time(0));
-    string words[] = {"technology", "student", "education", "university", "programming"};
-    int wordCount = 5;
-    string word = words[rand() % wordCount];
+    string word;
+    switch (theme) {
+        case 1: 
+            word = education[rand() % educationCount];
+            break;
+        case 2: 
+            word = animals[rand() % animalsCount];
+             break;
+        case 3: 
+            word = flowers[rand() % flowersCount];
+    }
     string guessed(word.length(), '_');
     int attempts = 7;
     char guess;
