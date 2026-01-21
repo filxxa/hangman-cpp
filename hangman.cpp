@@ -3,8 +3,70 @@
 #include<conio.h>
 #include<ctime>
 #include<cstdlib>
+#include<windows.h>
 using namespace std;
+//text color 
+void setColor(int color){
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+//hangman figure
+void displayhangman(int attempts){
+    setColor(12);
+	cout<<"\n";
+	switch(attempts){
+		case 7:
+			cout<<"        +---+\n"
+			   	"	    |\n"
+				"  	    |\n"
+				"	    |\n"
+				"	   ===\n";
+			break;
+		case 6:
+			cout<<"	+---+\n"
+			   	"	O   |\n"
+				"  	    |\n"
+				"	    |\n"
+				"	   ===\n";
+			break;
+		case 5:
+			cout<<"	+---+\n"
+			   	"	O   |\n"
+				"  	|   |\n"
+				"	    |\n"
+				"	   ===\n";
+			break;
+		case 4:
+			cout<<"	+---+\n"
+			   	"	O   |\n"
+				"       /|   |\n"
+				"	    |\n"
+				"	   ===\n";
+			break;
+		case 3:
+			cout<<"	+---+\n"
+			   	"	O   |\n"
+				"       /|\\  |\n"
+				"	    |\n"
+				"	   ===\n";
+			break;
+		case 2:
+			cout<<"	+---+\n"
+			   	"	O   |\n"
+				"       /|\\  |\n"
+				"       /    |\n"
+				"	   ===\n";
+			break;
+		case 1:
+			cout<<"	+---+\n"
+			   	"	O   |\n"
+				"       /|\\  |\n"
+				"       / \\  |\n"
+				"	   ===\n";
+			break;
+	}
+}
 int main() {
+    setColor(13);
     cout<<"===HANGMAN==="<<endl;
     cout<<"Press any key to start"<<endl;
     getch();
@@ -16,6 +78,7 @@ int main() {
     int animalsCount = 5;
     int flowersCount = 5;
     int theme;
+    setColor(1);
     cout<<"Choose a theme: "<<endl;
     cout<<"1: Education"<<endl;
     cout<<"2: Animals"<<endl;
@@ -38,6 +101,12 @@ int main() {
     char guess;
     cout<<"Guess the word: " << guessed << endl;
     while (attempts > 0 && guessed != word) {
+        displayhangman(attempts);
+        setColor(14);
+        cout<<"Word: "<<guessed<<endl;
+        setColor(10);
+        cout<<"Attempts left: "<<attempts<<endl;
+        setColor(1);
         cout << "Enter a letter: ";
         cin >> guess;
         bool correct = false;
@@ -48,12 +117,22 @@ int main() {
             }
         }
         if (correct) {
+            setColor(10);
             cout<<"Correct!" << endl;
         } else {
+            setColor(12);
             attempts--;
             cout << "Wrong guess! Attempts left: " << attempts << endl;
         }
         cout << "Current word: " << guessed << endl;
+        if(guessed == word){
+            setColor(2);
+            cout<<"You won!"<<endl;
+        }
+        else if (attempts == 0){
+            setColor(4);
+            cout<<"Game over!"<<endl;
+        }
     }
     return 0;
 }
